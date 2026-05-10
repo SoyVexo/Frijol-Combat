@@ -18,6 +18,7 @@ public class frijol : MonoBehaviour, IPointerDownHandler
     {
         rb = GetComponent<Rigidbody2D>();
         rb.linearVelocity = new Vector2(1, 1).normalized * velocity;
+        
     }
 
     void Update()
@@ -52,7 +53,7 @@ public class frijol : MonoBehaviour, IPointerDownHandler
         
         camara.Sacudir(0.5f, 0.1f);
         explosion();
-        Destroy(gameObject);
+        Destroy(gameObject, 0.02f); 
 
         timer.segundos = (int)Mathf.Min(timer.segundos + 1, timer.segundosIniciales);
 
