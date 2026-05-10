@@ -9,3 +9,9 @@ Release actual:
 Que inclulle:
 
 todo lo base para que funcione
+
+
+
+Fecha de anuncio del juego: Desconocida
+
+Fecha de lanzamiento: Año 2026
