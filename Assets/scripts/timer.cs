@@ -5,7 +5,7 @@ public class timer : MonoBehaviour
 {
     public Image imagenBarra;
     public float contador = 0f;
-    public int segundos = 10;
+    public int segundos = 5;
     
     public float segundosIniciales; // Para saber el 100%
 

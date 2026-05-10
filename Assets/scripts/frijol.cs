@@ -54,7 +54,7 @@ public class frijol : MonoBehaviour, IPointerDownHandler
         explosion();
         Destroy(gameObject);
 
-        timer.segundos = (int)Mathf.Min(timer.segundos + 3, timer.segundosIniciales);
+        timer.segundos = (int)Mathf.Min(timer.segundos + 1, timer.segundosIniciales);
 
         Debug.Log("Segundos restantes: " + timer.segundos);
     }
