@@ -14,6 +14,8 @@ public class frijol : MonoBehaviour, IPointerDownHandler
     public CameraShake camara;
 
     public timer timer;
+
+    private int spawn_count = 0;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -37,6 +39,14 @@ public class frijol : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (spawn_count >= 1)
+        {
+            Debug.LogWarning("Se ha intentado aparecer mas de un frijol, autoarreglándose");
+            return;
+        }
+
+        spawn_count++;
+        
         Camera cam = Camera.main;
 
         // 1. Obtenemos los límites de la pantalla en coordenadas del mundo
