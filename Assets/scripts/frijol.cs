@@ -9,6 +9,8 @@ public class frijol : MonoBehaviour, IPointerDownHandler
 
     public float velocity = 5f;
 
+    public float real_velocity;
+
     public GameObject explosionPrefab;
 
     public CameraShake camara;
@@ -19,13 +21,25 @@ public class frijol : MonoBehaviour, IPointerDownHandler
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.linearVelocity = new Vector2(1, 1).normalized * velocity;
+        if (Global.veces == 0) {Global.velocity = velocity; Global.veces++;}
+
+        float x = Random.Range(-1f, 1f);
+        float y = Random.Range(-1f, 1f);
+
+
+        if (Mathf.Abs(x) < 0.2f) x = x < 0 ? -0.5f : 0.5f;
+        if (Mathf.Abs(y) < 0.2f) y = y < 0 ? -0.5f : 0.5f;
+
+        Vector2 dirInicial = new Vector2(x, y).normalized;
+
+        rb.linearVelocity = dirInicial * Global.velocity;
         
     }
 
     void Update()
     {
         lastFrameVelocity = rb.linearVelocity;
+        real_velocity = Global.velocity;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -34,7 +48,7 @@ public class frijol : MonoBehaviour, IPointerDownHandler
 
         Vector2 direction = Vector2.Reflect(lastFrameVelocity.normalized, collisionNormal);
 
-        rb.linearVelocity = direction * velocity;
+        rb.linearVelocity = direction * Global.velocity;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -63,6 +77,13 @@ public class frijol : MonoBehaviour, IPointerDownHandler
         
         camara.Sacudir(0.5f, 0.1f);
         explosion();
+
+        Global.velocity += 0.5f;
+
+        if (Global.velocity > Global.max_velocidad) {Global.velocity = Global.max_velocidad;}
+
+        Global.points += 1 * (int)Global.velocity;
+
         Destroy(gameObject, 0.02f); 
 
         timer.segundos = (int)Mathf.Min(timer.segundos + 1, timer.segundosIniciales);
