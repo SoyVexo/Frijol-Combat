@@ -18,6 +18,10 @@ public class frijol : MonoBehaviour, IPointerDownHandler
     public timer timer;
 
     private int spawn_count = 0;
+    
+    
+    
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
