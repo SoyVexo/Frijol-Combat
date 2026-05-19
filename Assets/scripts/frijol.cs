@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
+using DG.Tweening;
 
 public class frijol : MonoBehaviour, IPointerDownHandler
 {
@@ -16,6 +18,7 @@ public class frijol : MonoBehaviour, IPointerDownHandler
     public CameraShake camara;
 
     public timer timer;
+    public TextMeshProUGUI TextPuntos;
 
     private int spawn_count = 0;
     
@@ -87,6 +90,8 @@ public class frijol : MonoBehaviour, IPointerDownHandler
         if (Global.velocity > Global.max_velocidad) {Global.velocity = Global.max_velocidad;}
 
         Global.points += 1 * (int)Global.velocity;
+        TextPuntos.color = Color.green;
+        TextPuntos.transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.15f).OnComplete(() => {TextPuntos.transform.DOScale(new Vector3(1, 1, 1), 0.15f); TextPuntos.color = Color.white;});
 
         Destroy(gameObject, 0.02f); 
 

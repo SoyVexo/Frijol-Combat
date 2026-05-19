@@ -7,5 +7,6 @@ public class SaveData
     public int record;
 
     public int coins;
+    public Color colorSkin;
 
 }

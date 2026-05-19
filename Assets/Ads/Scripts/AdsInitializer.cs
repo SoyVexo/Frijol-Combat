@@ -29,10 +29,17 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener
     }
   }
 
-  public void OnInitializationComplete()
-  {
+public void OnInitializationComplete()
+{
     Debug.Log("Unity Ads initialization complete.");
-  }
+
+    // Buscamos el script del Interstitial en la escena y le ordenamos cargar el anuncio
+    InterstitialAdExample interstitial = FindFirstObjectByType<InterstitialAdExample>();
+    if (interstitial != null)
+    {
+        interstitial.LoadAd(); // ¡El móvil empieza a descargar el anuncio en caché!
+    }
+}
 
   public void OnInitializationFailed(UnityAdsInitializationError error, string message)
   {

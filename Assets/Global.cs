@@ -3,6 +3,8 @@ using UnityEngine.InputSystem.Interactions;
 
 public static class Global
 {
+    public static bool AdsOn = true;
+    
     public static int segundos;
     public static float velocity;
     public static int max_velocidad = 30;
@@ -25,6 +27,10 @@ public static class Global
 
     public static float Monedas_Ganadas;
 
+    public static float NoobDetect = 0;
+
+    public static bool TimerPaused = false;
+
     public static void Restart()
     {
         velocity = 0;
@@ -46,8 +52,11 @@ public static class Global
     // se deve poner en el update del GameManager para que funciona el contador de segundos
     public static void Update()
     {
-        counter += Time.deltaTime;
-        SecondsCounter();
+        if (!TimerPaused)
+        {
+            counter += Time.deltaTime;
+            SecondsCounter();
+        }
     }
     private static void SecondsCounter()
     {

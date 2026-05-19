@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class Clicks_Fail_Detector : MonoBehaviour , IPointerDownHandler
 {
